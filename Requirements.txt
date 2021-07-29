@@ -13,8 +13,7 @@ certifi==2021.5.30
 cffi==1.14.6     
 chardet==3.0.4      
 charset-normalizer==2.0.3      
-cleo==0.8.1      
-click==8.0.1      
+cleo==0.8.1            
 clikit==0.6.2      
 crashtest==0.3.1      
 cryptography==3.4.7      
@@ -66,11 +65,9 @@ httplib2==0.19.1
 httpx==0.13.3     
 hyperframe==5.2.0      
 idna==2.10       
-importlib-metadata==3.10.1     
-itsdangerous==2.0.1      
+importlib-metadata==3.10.1          
 jedi==0.15.2     
-jeepney==0.6.0      
-Jinja2==3.0.1      
+jeepney==0.6.0            
 joblib==1.0.1      
 Keras-Preprocessing==1.1.2      
 keyring==21.8.0     
@@ -147,8 +144,7 @@ ujson==1.35
 uritemplate==3.0.1      
 urllib3==1.26.6     
 virtualenv==20.4.7     
-webencodings==0.5.1      
-Werkzeug==2.0.1      
+webencodings==0.5.1           
 wheel==0.36.2     
 wrapt==1.12.1     
 yapf==0.31.0     
