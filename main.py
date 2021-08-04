@@ -22,6 +22,20 @@ def RandomColor2():
     randcolor2 = discord.Color(random.randint(0x000000, 0xFFFFFF))
     return randcolor2
 
+@client.command(brief='Гейская радуга для Всех!')
+async def радуга1(ctx, roleid, *, slp):
+  userid = ctx.author.id
+  if userid == 485489979796226089 or userid == 852609539497000960 or userid == 479953230554726420:
+    await ctx.reply('Харашо мой повелитель!')
+    await asyncio.sleep(1)
+    await ctx.send('Гейская радуга включена для роли <@&867366733051330581>')
+    role = discord.utils.get(ctx.guild.roles, id=roleidclr)
+    while True:
+        await role.edit(colour=RandomColor())
+        await asyncio.sleep(slp)
+  else:
+    await ctx.reply('Бля чел пошёл нахуй')
+
 @client.command()
 async def Нагадить(ctx, member : discord.Member):
   userid = ctx.author.id
@@ -75,33 +89,6 @@ async def чекютуб(ctx, *, search):
     await ctx.reply('Дэржи ебат:')
     await ctx.send('http://www.youtube.com/watch?v=' + search_results[0])
 
-@client.command(brief='Хентаай')
-async def хентай(ctx):
-  rand0m = random.randint(1, 2)
-  userid = ctx.author.id
-  if userid == 485489979796226089:
-    if rand0m == 1:
-      rand0m = random.randint(1, 2)
-      await ctx.reply(file=discord.File('Limba-Hentai.mp3'))
-      role = discord.utils.get(ctx.guild.roles, id=868053013405786132)
-      while True:
-        await role.edit(colour=RandomColor())
-        await asyncio.sleep(10)
-    elif rand0m == 2:
-      rand0m = random.randint(1, 2)
-      await ctx.reply(file=discord.File('Lesly-Hentai.mp3'))
-      role = discord.utils.get(ctx.guild.roles, id=868053013405786132)
-      while True:
-        await role.edit(colour=RandomColor())
-        await asyncio.sleep(10)
-  else:
-    if rand0m == 1:
-      rand0m = random.randint(1, 2)
-      await ctx.reply(file=discord.File('Limba-Hentai.mp3'))
-    elif rand0m == 2:
-      rand0m = random.randint(1, 2)
-      await ctx.reply(file=discord.File('Lesly-Hentai.mp3'))
-
 @client.command(brief='Позвать бота')
 async def харакири(ctx):
   userid = ctx.author.id
@@ -125,47 +112,22 @@ async def харакири(ctx):
     await ctx.send('Добро пожаловать в гей клуб ебат')
     await ctx.send(file=discord.File('gayclyb.jpg'))
 
-@client.command(brief='Гейская радуга для Мираса')
-async def overlord(ctx):
+@client.command(brief='Гейская радуга для Всех!')
+async def радуга(ctx, roleid, *, slp):
   userid = ctx.author.id
   if userid == 485489979796226089 or userid == 852609539497000960 or userid == 479953230554726420:
     await ctx.reply('Харашо мой повелитель!')
     await asyncio.sleep(1)
-    await ctx.send('Гейская радуга включена для роли <@&867366733051330581>')
-    role = discord.utils.get(ctx.guild.roles, id=867366733051330581)
+    await ctx.send('Гейская радуга включена для роли '+roleid)
+    rolid = int(re.search(r'\d+', roleid).group(0))
+    slpp = int(re.search(r'\d+', slp).group(0))
+    member = ctx.author
+    role = discord.utils.get(member.guild.roles, id=rolid)
     while True:
         await role.edit(colour=RandomColor())
-        await asyncio.sleep(10)
+        await asyncio.sleep(slpp)
   else:
     await ctx.reply('Бля чел пошёл нахуй')
-
-@client.command(brief='Неизвестная команда')
-async def sosi(ctx):
-  userid = ctx.author.id
-  if userid == 485489979796226089:
-    await ctx.reply('Ок мой хозяйн, ня!')
-    await asyncio.sleep(1)
-    await ctx.send('Радуга включена для роли <@&855112661824962581>')
-    role = discord.utils.get(ctx.guild.roles, id=855112661824962581)
-    while True:
-        await role.edit(colour=RandomColor())
-        await asyncio.sleep(10)
-  else:
-    await ctx.reply('Сам соси ебат ахуел чтоли')
-
-@client.command(brief='Неизвестная команда')
-async def aboba(ctx):
-  userid = ctx.author.id
-  if userid == 485489979796226089:
-    await ctx.reply('Мой господин, будьте со мной нежнее~~')
-    await asyncio.sleep(1)
-    await ctx.send('Радуга включена для роли <@&849630503803551754>')
-    role = discord.utils.get(ctx.guild.roles, id=849630503803551754)
-    while True:
-        await role.edit(colour=RandomColor())
-        await asyncio.sleep(10)
-  else:
-    await ctx.reply('Нет блять амогус')
 
 @client.event
 async def on_ready():
