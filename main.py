@@ -22,20 +22,6 @@ def RandomColor2():
     randcolor2 = discord.Color(random.randint(0x000000, 0xFFFFFF))
     return randcolor2
 
-@client.command(brief='Гейская радуга для Всех!')
-async def радуга1(ctx, roleid, *, slp):
-  userid = ctx.author.id
-  if userid == 485489979796226089 or userid == 852609539497000960 or userid == 479953230554726420:
-    await ctx.reply('Харашо мой повелитель!')
-    await asyncio.sleep(1)
-    await ctx.send('Гейская радуга включена для роли <@&867366733051330581>')
-    role = discord.utils.get(ctx.guild.roles, id=roleidclr)
-    while True:
-        await role.edit(colour=RandomColor())
-        await asyncio.sleep(slp)
-  else:
-    await ctx.reply('Бля чел пошёл нахуй')
-
 @client.command()
 async def Нагадить(ctx, member : discord.Member):
   userid = ctx.author.id
