@@ -104,14 +104,18 @@ async def радуга(ctx, roleid, *, slp):
   if userid == 485489979796226089 or userid == 852609539497000960 or userid == 479953230554726420:
     await ctx.reply('Харашо мой повелитель!')
     await asyncio.sleep(1)
-    await ctx.send('Гейская радуга включена для роли '+roleid)
+    await ctx.send('Гейская радуга включена для роли '+roleid+' на 2 часа')
     rolid = int(re.search(r'\d+', roleid).group(0))
     slpp = int(re.search(r'\d+', slp).group(0))
+    count = 7200//slpp
+    counta = 0
     member = ctx.author
     role = discord.utils.get(member.guild.roles, id=rolid)
-    while True:
+    while counta <= count:
         await role.edit(colour=RandomColor())
+        counta = counta + 1
         await asyncio.sleep(slpp)
+    await ctx.send('Действие радуги закончилась у роли '+roleid+'!')
   else:
     await ctx.reply('Бля чел пошёл нахуй')
 
