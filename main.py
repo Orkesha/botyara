@@ -47,21 +47,36 @@ async def транслит(ctx, lang, *, args):
   a = t.translate(args, dest=lang)
   await ctx.send('На ебат, перевод на `' + lang + '` язык: `' + a.text + '`')
 
-@client.command(aliases=["show"], brief='Ищет в гугле картинку по тексту')
+@client.command(brief='Ищет картинку в гугле')
 async def гуглпик(ctx, *, search):
-  userid = ctx.author.id
-  if userid == 485489979796226089 or userid == 852609539497000960 or userid == 479953230554726420 or userid == 672658552409686037:
-    ran = random.randint(0, 9)
-    resource = build("customsearch", "v1", developerKey=api_key).cse()
-    result = resource.list(
+   a = ["hentai", "хентай", "хентыч", "хентай хентай хентай хентай хентай хентай хентай", "hentai hentai hentai hentai hentai hentai", "хентыч хентыч хентай хентыч hentai", "hentai hentai хентыч хентай hentai хентыч хентыч"]
+   b = ["порно", "прон", "порнуха","porn","pron", "pornhub", "порнхаб", "pornuha","nudes","adult","anal","нюдс","анал", "sex", "секс", "porns","порнухи", "порно порно порно порно порно порно прон прон порнуха porn порнхаб порнхаб анал анал анал anal anal анал секс секс секс нюдс порнхаб порнхаб порно прон порнуха порно pron хентай порно"]
+   c = ["члены", "писька", "писюны", "письки", "члены члены писька писька писюны писюны письки письки pisun pisyn"]
+   z = search
+   x = z.casefold()
+   if any(x in s for s in a):
+      await ctx.reply("Не гугли такое, бьяка!((")
+   elif any(a in s for s in x):
+      await ctx.reply("Не гугли такое, бьяка!((")
+   elif any(x in s for s in b):
+      await ctx.reply("Не гугли такое, бьяка!((")
+   elif any(b in s for s in x):
+      await ctx.reply("Не гугли такое, бьяка!((")
+   elif any(x in s for s in c):
+      await ctx.reply("Ясен хуй, ты гей)))0)")
+   elif any(c in s for s in x):
+      await ctx.reply("Ясен хуй, ты гей)))0)")
+   else:
+      await ctx.reply("Поздравляю ебат, твой запрос прошёл мощный фильтр.")
+      ran = random.randint(0, 9)
+      resource = build("customsearch", "v1", developerKey=api_key).cse()
+      result = resource.list(
         q=f"{search}", cx="4af447e250bf2abd0", searchType="image"
-    ).execute()
-    url = result["items"][ran]["link"]
-    embed1 = discord.Embed(title=f"Дэржи босс: {search.title()}")
-    embed1.set_image(url=url)
-    await ctx.reply(embed=embed1)
-  else:
-    await ctx.reply('Е кетш сасымай, стемим на')
+      ).execute()
+      url = result["items"][ran]["link"]
+      embed1 = discord.Embed(title=f"Дэржи ебат: {search.title()}")
+      embed1.set_image(url=url)
+      await ctx.send(embed=embed1)
 
 @client.command(brief='Ищет видос на ютубе по тексту')
 async def чекютуб(ctx, *, search):
