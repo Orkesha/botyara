@@ -125,9 +125,9 @@ async def on_ready():
   while True:
      await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(name="♂Gomo♂ SLAYER"))
      await asyncio.sleep(3)
-     await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Activity(type=discord.ActivityType.watching, name="♂Gay club♂ 3"))
+     await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Activity(type=discord.ActivityType.watching, name="♂Gay club♂"))
      await asyncio.sleep(3)
-     await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Activity(type=discord.ActivityType.listening, name="♂Gay♂ Songs"))
+     await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Activity(type=discord.ActivityType.listening, name="♂Gachi♂ remix"))
      await asyncio.sleep(3)
 
 client.run('ODU3NTYxODk4MTgxNzIyMTIy.YNRYwQ.Odc54SADOSA4zPn9ecXa8B3PT1w')
