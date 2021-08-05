@@ -104,10 +104,10 @@ async def радуга(ctx, roleid, *, slp):
   if userid == 485489979796226089 or userid == 852609539497000960 or userid == 479953230554726420:
     await ctx.reply('Харашо мой повелитель!')
     await asyncio.sleep(1)
-    await ctx.send('Гейская радуга включена для роли '+roleid+' на 2 часа')
+    await ctx.send('Гейская радуга включена для роли '+roleid+' на час')
     rolid = int(re.search(r'\d+', roleid).group(0))
     slpp = int(re.search(r'\d+', slp).group(0))
-    count = 7200//slpp
+    count = 3600//slpp
     counta = 0
     member = ctx.author
     role = discord.utils.get(member.guild.roles, id=rolid)
