@@ -56,15 +56,9 @@ async def гуглпик(ctx, *, search):
    x = z.casefold()
    if any(x in s for s in a):
       await ctx.reply("Не гугли такое, бьяка!((")
-   elif any(a in s for s in x):
-      await ctx.reply("Не гугли такое, бьяка!((")
    elif any(x in s for s in b):
       await ctx.reply("Не гугли такое, бьяка!((")
-   elif any(b in s for s in x):
-      await ctx.reply("Не гугли такое, бьяка!((")
    elif any(x in s for s in c):
-      await ctx.reply("Ясен хуй, ты гей)))0)")
-   elif any(c in s for s in x):
       await ctx.reply("Ясен хуй, ты гей)))0)")
    else:
       await ctx.reply("Поздравляю ебат, твой запрос прошёл мощный фильтр.")
