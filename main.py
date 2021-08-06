@@ -107,10 +107,37 @@ async def харакири(ctx):
     await ctx.send('Добро пожаловать в гей клуб ебат')
     await ctx.send(file=discord.File('gayclyb.jpg'))
 
+@client.command()
+async def addid(ctx, *, a: str):
+  userid = ctx.author.id
+  if userid == 485489979796226089:
+    a = a.replace("<","")
+    a = a.replace(">","")
+    a = a.replace("@","")
+    a = a.replace("&","")
+    a = a.replace("!","")
+    my_file = open("allowedid.txt", "a+")
+    my_file.write(a+"   ")
+    my_file.close()
+    await ctx.send("Ок, записал в бд")
+  else:
+    await ctx.send("Ты гей))0)")
+
+@client.command()
+async def checkid(ctx):
+    my_file = open("allowedid.txt", "r")
+    if str(ctx.author.id) in str(my_file.read()):
+      await ctx.send("Вам разрешено!")
+      my_file.close()
+    else:
+      await ctx.send("Вам запрещено!")
+      my_file.close()
+    
 @client.command(brief='Гейская радуга для Всех!')
 async def радуга(ctx, roleid, *, slp):
-  userid = ctx.author.id
-  if userid == 485489979796226089 or userid == 852609539497000960 or userid == 479953230554726420:
+my_file = open("allowedid.txt", "r")
+  if str(ctx.author.id) in str(my_file.read()):
+    my_file.close()
     await ctx.reply('Харашо мой повелитель!')
     await asyncio.sleep(1)
     await ctx.send('Гейская радуга включена для роли '+roleid)
@@ -125,7 +152,8 @@ async def радуга(ctx, roleid, *, slp):
         await asyncio.sleep(slpp)
     await ctx.send('Действие радуги закончилась у роли '+roleid+'!')
   else:
-    await ctx.reply('Бля чел пошёл нахуй')
+    await ctx.reply("Далбаебам куни не делаю")
+    my_file.close()
 
 @client.event
 async def on_ready():
