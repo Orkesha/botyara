@@ -135,7 +135,7 @@ async def checkid(ctx):
     
 @client.command(brief='Гейская радуга для Всех!')
 async def радуга(ctx, roleid, *, slp):
-my_file = open("allowedid.txt", "r")
+  my_file = open("allowedid.txt", "r")
   if str(ctx.author.id) in str(my_file.read()):
     my_file.close()
     await ctx.reply('Харашо мой повелитель!')
