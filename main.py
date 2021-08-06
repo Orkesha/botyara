@@ -116,13 +116,11 @@ async def радуга(ctx, roleid, *, slp):
     await ctx.send('Гейская радуга включена для роли '+roleid+' на час')
     rolid = int(re.search(r'\d+', roleid).group(0))
     slpp = int(re.search(r'\d+', slp).group(0))
-    count = 3600//slpp
     counta = 0
     member = ctx.author
     role = discord.utils.get(member.guild.roles, id=rolid)
-    while counta <= count:
+    while counta == 1000:
         await role.edit(colour=RandomColor())
-        await ctx.send(counta)
         counta = counta + 1
         await asyncio.sleep(slpp)
     await ctx.send('Действие радуги закончилась у роли '+roleid+'!')
