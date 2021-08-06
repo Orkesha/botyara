@@ -137,7 +137,6 @@ async def радуга(ctx, roleid, *, slp):
     member = ctx.author
     role = discord.utils.get(member.guild.roles, id=rolid)
     while True:
-      await ctx.send("1")
       counta = counta + 1
       await role.edit(colour=RandomColor())
       if counta == 1000:
