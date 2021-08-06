@@ -119,7 +119,7 @@ async def радуга(ctx, roleid, *, slp):
     counta = 0
     member = ctx.author
     role = discord.utils.get(member.guild.roles, id=rolid)
-    while counta == 1000:
+    while counta == 999:
         await role.edit(colour=RandomColor())
         counta = counta + 1
         await asyncio.sleep(slpp)
