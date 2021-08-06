@@ -122,7 +122,17 @@ async def addid(ctx, *, a: str):
     await ctx.send("Ок, записал в бд")
   else:
     await ctx.send("Ты гей))0)")
-   
+
+@client.command()
+async def checkid(ctx):
+  userid = ctx.author.id
+  if userid == 485489979796226089:
+    my_file = open("allowedid.txt", "r")
+    await ctx.send("Айди счастливчиков: "+my_file.read())
+    my_file.close()
+  else:
+    await ctx.send("Даунов не обслуживаю")
+    
 @client.command(brief='Гейская радуга для Всех!')
 async def радуга(ctx, roleid, *, slp):
   my_file = open("allowedid.txt", "r")
