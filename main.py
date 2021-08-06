@@ -122,17 +122,7 @@ async def addid(ctx, *, a: str):
     await ctx.send("Ок, записал в бд")
   else:
     await ctx.send("Ты гей))0)")
-
-@client.command()
-async def checkid(ctx):
-    my_file = open("allowedid.txt", "r")
-    if str(ctx.author.id) in str(my_file.read()):
-      await ctx.send("Вам разрешено!")
-      my_file.close()
-    else:
-      await ctx.send("Вам запрещено!")
-      my_file.close()
-    
+   
 @client.command(brief='Гейская радуга для Всех!')
 async def радуга(ctx, roleid, *, slp):
   my_file = open("allowedid.txt", "r")
@@ -143,13 +133,16 @@ async def радуга(ctx, roleid, *, slp):
     await ctx.send('Гейская радуга включена для роли '+roleid)
     rolid = int(re.search(r'\d+', roleid).group(0))
     slpp = int(re.search(r'\d+', slp).group(0))
-    counta = 0
+    counta = 1
     member = ctx.author
     role = discord.utils.get(member.guild.roles, id=rolid)
-    while counta == 999:
-        await role.edit(colour=RandomColor())
-        counta = counta + 1
-        await asyncio.sleep(slpp)
+    while True:
+      await ctx.send("1")
+      counta = counta + 1
+      await role.edit(colour=RandomColor())
+      if counta == 1000:
+        break
+      await asyncio.sleep(slpp)
     await ctx.send('Действие радуги закончилась у роли '+roleid+'!')
   else:
     await ctx.reply("Далбаебам куни не делаю")
