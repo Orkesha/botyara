@@ -113,7 +113,7 @@ async def радуга(ctx, roleid, *, slp):
   if userid == 485489979796226089 or userid == 852609539497000960 or userid == 479953230554726420:
     await ctx.reply('Харашо мой повелитель!')
     await asyncio.sleep(1)
-    await ctx.send('Гейская радуга включена для роли '+roleid+' на час')
+    await ctx.send('Гейская радуга включена для роли '+roleid)
     rolid = int(re.search(r'\d+', roleid).group(0))
     slpp = int(re.search(r'\d+', slp).group(0))
     counta = 0
