@@ -135,25 +135,80 @@ async def checkid(ctx):
     
 @client.command(brief='Гейская радуга для Всех!')
 async def радуга(ctx, roleid, *, slp):
-  my_file = open("allowedid.txt", "r")
-  if str(ctx.author.id) in str(my_file.read()):
+ gid = ctx.message.guild.id
+ open(str(gid)+'time.txt', 'a')
+ open(str(gid)+'.txt', 'a')
+ sfile = open(str(gid)+'.txt', 'r')
+ if "" == str(sfile.read()):
+    sfile = open(str(gid)+'.txt', 'w')
+    sfile.write("1")
+    sfile.close()
+ stfile = open(str(gid)+'time.txt', 'r')
+ if "" == str(stfile.read()):
+    sfile = open(str(gid)+'time.txt', 'w')
+    sfile.write("0")
+    sfile.close()
+ sfile = open(str(gid)+'.txt', 'r')
+ if 1000 < int(sfile.read()):
+   dbztime = open(str(gid)+'time.txt', 'r')
+   dbtime = 86400 - int(dbztime.read())
+   await ctx.send("К сожалению кулдаун настиг этот сервер. Ждите, "+str(datetime.timedelta(seconds=dbtime)))
+   dbztime.close()
+ else:
+   my_file = open("allowedid.txt", "r")
+   if str(ctx.author.id) in str(my_file.read()):
+    sfile = open(str(gid)+'.txt', 'r')
     my_file.close()
     await ctx.reply('Харашо мой повелитель!')
     await asyncio.sleep(1)
-    await ctx.send('Гейская радуга включена для роли '+roleid)
+    mess = await ctx.send('Гейская радуга включена для роли '+roleid+', Кулдаун: '+sfile.read()+'/1000')
     rolid = int(re.search(r'\d+', roleid).group(0))
     slpp = int(re.search(r'\d+', slp).group(0))
-    counta = 1
+    sfile = open(str(gid)+'.txt', 'r')
+    counta = int(sfile.read())
     member = ctx.author
     role = discord.utils.get(member.guild.roles, id=rolid)
     while True:
-      counta = counta + 1
-      await role.edit(colour=RandomColor())
-      if counta == 1000:
-        break
-      await asyncio.sleep(slpp)
+        await role.edit(colour=RandomColor())
+        sfile = open(str(gid)+'.txt', 'r')
+        counta = int(sfile.read()) + int(1)
+        sfile.close()
+        sfile = open(str(gid)+'.txt', 'w')
+        sfile.write(str(counta))
+        sfile.close()
+        sfile = open(str(gid)+'.txt', 'r')
+        await mess.edit(content='Гейская радуга включена для роли '+roleid+', Кулдаун: '+sfile.read()+'/1000')
+        sfile.close()
+        if counta > 1000:
+          break
+        await asyncio.sleep(slpp)
     await ctx.send('Действие радуги закончилась у роли '+roleid+'!')
-  else:
+    await asyncio.sleep(2)
+    stfile = open(str(gid)+'time.txt', 'r')
+    a = 0
+    if int(stfile.read()) > 0:
+      print(f's')
+      stfile.close()
+    else:
+      stfile.close()
+      while True:
+       a = a + 1
+       stfile = open(str(gid)+'time.txt', 'w+')
+       stfile.write(str(a))
+       stfile.close()
+       await asyncio.sleep(1)
+       if a == 86400:
+        break
+      zer = 0
+      one = 1
+      sfile = open(str(gid)+'.txt', 'w+')
+      sfile.write(str(one))
+      sfile.close()
+      strfile = open(str(gid)+'time.txt', 'w+')
+      strfile.wtite(str(zer))
+      strfile.close()
+      await ctx.reply("Радуга вновь доступна!")
+   else:
     await ctx.reply("Далбаебам куни не делаю")
     my_file.close()
 
