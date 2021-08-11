@@ -170,9 +170,10 @@ async def радуга(ctx, roleid, *, slp):
     member = ctx.author
     role = discord.utils.get(member.guild.roles, id=rolid)
     while True:
-        await role.edit(colour=RandomColor())
         sfile = open(str(gid)+'.txt', 'r')
         counta = int(sfile.read()) + int(1)
+        if counta >= 1000:
+          break
         sfile.close()
         sfile = open(str(gid)+'.txt', 'w')
         sfile.write(str(counta))
@@ -180,8 +181,9 @@ async def радуга(ctx, roleid, *, slp):
         sfile = open(str(gid)+'.txt', 'r')
         await mess.edit(content='Гейская радуга включена для роли '+roleid+', Кулдаун: '+sfile.read()+'/1000')
         sfile.close()
-        if counta > 1000:
+        if counta >= 1000:
           break
+        await role.edit(colour=RandomColor())
         await asyncio.sleep(slpp)
     await ctx.send('Действие радуги закончилась у роли '+roleid+'!')
     await asyncio.sleep(2)
