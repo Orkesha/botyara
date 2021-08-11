@@ -150,7 +150,7 @@ async def радуга(ctx, roleid, *, slp):
     sfile.write("0")
     sfile.close()
  sfile = open(str(gid)+'.txt', 'r')
- if 1000 < int(sfile.read()):
+ if 1000 <= int(sfile.read()):
    dbztime = open(str(gid)+'time.txt', 'r')
    dbtime = 86400 - int(dbztime.read())
    await ctx.send("К сожалению кулдаун настиг этот сервер. Ждите, "+str(datetime.timedelta(seconds=dbtime)))
