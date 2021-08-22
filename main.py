@@ -23,25 +23,6 @@ def RandomColor2():
     randcolor2 = discord.Color(random.randint(0x000000, 0xFFFFFF))
     return randcolor2
 
-@client.command()
-async def Нагадить(ctx, member : discord.Member):
-  userid = ctx.author.id
-  if userid == 485489979796226089:
-    try:
-        channel = member.voice.channel
-        if channel: # If user is in a channel
-            vc = await channel.connect() # Connect
-            await ctx.send("Ща братан...")
-        else:
-            await ctx.send("Уже там...") # If the bot is already connected
-        vc.play(discord.FFmpegPCMAudio("yamete.mp3"), after=lambda e: print('done', e))
-        await asyncio.sleep(15)
-        await vc.disconnect()
-    except AttributeError:
-        return await ctx.send("Его нету...") # Error message
-  else:
-    await ctx.send('Е не знаю такого..')
-
 @client.command(brief='Переводит текст. Использование транслит [язык] [текст]')
 async def транслит(ctx, lang, *, args):
   t = Translator()
