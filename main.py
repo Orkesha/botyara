@@ -92,7 +92,7 @@ async def харакири(ctx):
 @client.command()
 async def addid(ctx, *, a: str):
   userid = ctx.author.id
-  if userid == 485489979796226089:
+  if userid == 485489979796226089 or userid == 523476507340046356:
     a = a.replace("<","")
     a = a.replace(">","")
     a = a.replace("@","")
