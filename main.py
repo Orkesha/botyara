@@ -69,7 +69,7 @@ async def чекютуб(ctx, *, search):
 @client.command(brief='Позвать бота')
 async def харакири(ctx):
   userid = ctx.author.id
-  if userid == 485489979796226089:
+  if userid == 394668654723072000:
     await ctx.reply('Мой повелитель, что вы желаете со мной делать?')
     await asyncio.sleep(1)
     await ctx.send('Господин, нежнее!!')
@@ -92,7 +92,7 @@ async def харакири(ctx):
 @client.command()
 async def addid(ctx, *, a: str):
   userid = ctx.author.id
-  if userid == 485489979796226089 or userid == 523476507340046356:
+  if userid == 394668654723072000 or userid == 523476507340046356:
     a = a.replace("<","")
     a = a.replace(">","")
     a = a.replace("@","")
@@ -108,7 +108,7 @@ async def addid(ctx, *, a: str):
 @client.command()
 async def checkid(ctx):
   userid = ctx.author.id
-  if userid == 485489979796226089:
+  if userid == 394668654723072000:
     my_file = open("allowedid.txt", "r")
     await ctx.send("Айди счастливчиков: "+my_file.read())
     my_file.close()
