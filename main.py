@@ -131,10 +131,10 @@ async def радуга(ctx, roleid, *, slp):
     sfile.write("0")
     sfile.close()
  sfile = open(str(gid)+'.txt', 'r')
- if 1000 <= int(sfile.read()):
+ if 900 <= int(sfile.read()):
    dbztime = open(str(gid)+'time.txt', 'r')
    dbtime = 86400 - int(dbztime.read())
-   await ctx.send("К сожалению кулдаун настиг этот сервер. Ждите, "+str(datetime.timedelta(seconds=dbtime)))
+   await ctx.send("Использованы все попытки. Ждите, "+str(datetime.timedelta(seconds=dbtime)))
    dbztime.close()
  else:
    my_file = open("allowedid.txt", "r")
@@ -153,7 +153,7 @@ async def радуга(ctx, roleid, *, slp):
     while True:
         sfile = open(str(gid)+'.txt', 'r')
         counta = int(sfile.read()) + int(1)
-        if counta >= 1000:
+        if counta >= 900:
           break
         sfile.close()
         sfile = open(str(gid)+'.txt', 'w')
@@ -162,7 +162,7 @@ async def радуга(ctx, roleid, *, slp):
         sfile = open(str(gid)+'.txt', 'r')
         await mess.edit(content='Гейская радуга включена для роли '+roleid+', Кулдаун: '+sfile.read()+'/1000')
         sfile.close()
-        if counta >= 1000:
+        if counta >= 900:
           break
         await role.edit(colour=RandomColor())
         await asyncio.sleep(slpp)
