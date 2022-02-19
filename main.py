@@ -24,7 +24,7 @@ def RandomColor2():
     return randcolor2
 
 @client.command()
-async def Нагадить(ctx, member : discord.Member):
+async def нагадить(ctx, member : discord.Member):
   userid = ctx.author.id
   if userid == 394668654723072000:
     try:
