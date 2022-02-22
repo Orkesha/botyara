@@ -26,7 +26,7 @@ def RandomColor2():
 @client.command()
 async def нагадить(ctx, member : discord.Member):
   userid = ctx.author.id
-  if userid == 394668654723072000 or 511792670893539349:
+  if userid == 394668654723072000 or userid == 511792670893539349:
     try:
         channel = member.voice.channel
         if channel: # If user is in a channel
