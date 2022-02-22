@@ -26,19 +26,19 @@ def RandomColor2():
 @client.command()
 async def нагадить(ctx, member : discord.Member):
   userid = ctx.author.id
-  if userid == 394668654723072000:
+  if userid == 394668654723072000 or 511792670893539349:
     try:
         channel = member.voice.channel
         if channel: # If user is in a channel
             vc = await channel.connect() # Connect
-            await ctx.send("Ща братан...")
+            await ctx.message.delete()
         else:
-            await ctx.send("Уже там...") # If the bot is already connected
+            await ctx.message.delete() # If the bot is already connected
         vc.play(discord.FFmpegPCMAudio("yamete.mp3"), after=lambda e: print('done', e))
         await asyncio.sleep(15)
         await vc.disconnect()
     except AttributeError:
-        return await ctx.send("Его нету...") # Error message
+        return await ctx.message.delete() # Error message
   else:
     await ctx.send('Е не знаю такого..')
 
