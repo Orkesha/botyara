@@ -13,8 +13,7 @@ import googletrans
 from googletrans import Translator
 
 client = commands.Bot(command_prefix="")
-api_key = "AIzaSyBL2ZBVoHzU43wgmF36PTdcFie25Cg140g"
-
+api_key = "AIzaSyDL5egasSh1KSwzKdt1Uua2dmSBCNvtZao"
 def RandomColor(): 
     randcolor = discord.Color(random.randint(0x000000, 0xFFFFFF))
     return randcolor
