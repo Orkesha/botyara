@@ -140,8 +140,8 @@ async def радуга(ctx, roleid, *, slp):
  global kdstatus
  def start(gid, rolid, slpp, role):
       ctx.reply('Харашо мой повелитель!')
-      time.sleep(1)
-      mess = await ctx.send('Гейская радуга включена для роли '+roleid+', Кулдаун: '+str(kdstatus[gid])+'/1000')
+      time.sleep(0.3)
+      mess = ctx.send('Гейская радуга включена для роли '+roleid+', Кулдаун: '+str(kdstatus[gid])+'/1000')
       while True:
         if kdstatus[gid] == 1000:
           kdtime[gid] = int(time.time()) + 86400
