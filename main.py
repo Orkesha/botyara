@@ -139,20 +139,20 @@ async def checkid(ctx):
 async def радуга(ctx, roleid, *, slp):
  global kdstatus
  def start(gid, rolid, slpp, role):
-      await ctx.reply('Харашо мой повелитель!')
-      await asyncio.sleep(1)
+      ctx.reply('Харашо мой повелитель!')
+      time.sleep(1)
       mess = await ctx.send('Гейская радуга включена для роли '+roleid+', Кулдаун: '+str(kdstatus[gid])+'/1000')
       while True:
         if kdstatus[gid] == 1000:
           kdtime[gid] = int(time.time()) + 86400
           np.save('kdstatus.npy', kdstatus)
           np.save('kdtime.npy', kdtime)
-          await ctx.send('Действие радуги закончилась у роли '+roleid+'!')
+          ctx.send('Действие радуги закончилась у роли '+roleid+'!')
           break 
         kdstatus[gid] += 1
-        await mess.edit(content='Гейская радуга включена для роли '+roleid+', Кулдаун: '+str(kdstatus[gid])+'/1000')
-        await role.edit(colour=RandomColor())
-        await asyncio.sleep(slpp)
+        mess.edit(content='Гейская радуга включена для роли '+roleid+', Кулдаун: '+str(kdstatus[gid])+'/1000')
+        role.edit(colour=RandomColor())
+        time.sleep(slpp)
  gid = ctx.message.guild.id
  rolid = int(re.search(r'\d+', roleid).group(0))
  slpp = int(re.search(r'\d+', slp).group(0))
