@@ -138,21 +138,6 @@ async def checkid(ctx):
 @client.command(brief='Гейская радуга для Всех!')
 async def радуга(ctx, roleid, *, slp):
  global kdstatus
- def start(ctx, gid, rolid, slpp, role):
-      ctx.reply('Харашо мой повелитель!')
-      time.sleep(0.3)
-      mess = ctx.send('Гейская радуга включена для роли '+roleid+', Кулдаун: '+str(kdstatus[gid])+'/1000')
-      while True:
-        if kdstatus[gid] == 1000:
-          kdtime[gid] = int(time.time()) + 86400
-          np.save('kdstatus.npy', kdstatus)
-          np.save('kdtime.npy', kdtime)
-          ctx.send('Действие радуги закончилась у роли '+roleid+'!')
-          break 
-        kdstatus[gid] += 1
-        mess.edit(content='Гейская радуга включена для роли '+roleid+', Кулдаун: '+str(kdstatus[gid])+'/1000')
-        role.edit(colour=RandomColor())
-        time.sleep(slpp)
  gid = ctx.message.guild.id
  rolid = int(re.search(r'\d+', roleid).group(0))
  slpp = int(re.search(r'\d+', slp).group(0))
@@ -163,14 +148,27 @@ async def радуга(ctx, roleid, *, slp):
  except:
    kdstatus[gid] = 0
  if kdstatus[gid] != 1000 or kdstatus[gid] == None:
-    start(ctx, gid, rolid, slpp, role)
+      await ctx.reply('Харашо мой повелитель!')
+      await asyncio.sleep(0.3)
+      mess = await ctx.send('Гейская радуга включена для роли '+roleid+', Кулдаун: '+str(kdstatus[gid])+'/1000')
+      while True:
+        if kdstatus[gid] == 1000:
+          kdtime[gid] = int(time.time()) + 86400
+          np.save('kdstatus.npy', kdstatus)
+          np.save('kdtime.npy', kdtime)
+          await ctx.send('Действие радуги закончилась у роли '+roleid+'!')
+          break 
+        kdstatus[gid] += 1
+        await mess.edit(content='Гейская радуга включена для роли '+roleid+', Кулдаун: '+str(kdstatus[gid])+'/1000')
+        await role.edit(colour=RandomColor())
+        await asyncio.sleep(slpp)
  else:
     if int(time.time()) <= kdtime[gid]:
         await ctx.send("Использованы все попытки. Ждите, "+str(datetime.timedelta(seconds=dbtime)))
     if int(time.time()) >= kdtime[gid]:
         del kdtime[gid]
         del kdstatus[gid]
-        start(ctx, gid, rolid, slpp, role)
+        return радуга(ctx, roleid, *, slp)
 
     
         
