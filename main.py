@@ -158,6 +158,10 @@ async def радуга(ctx, roleid, *, slp):
  slpp = int(re.search(r'\d+', slp).group(0))
  member = ctx.author
  role = discord.utils.get(member.guild.roles, id=rolid)
+ try:
+   s = kdstatus[gid]
+ except:
+   kdstatus[gid] = 0
  if kdstatus[gid] != 1000 or kdstatus[gid] == None:
     start(gid, rolid, slpp, role)
  else:
@@ -167,6 +171,8 @@ async def радуга(ctx, roleid, *, slp):
         del kdtime[gid]
         del kdstatus[gid]
         start(gid, rolid, slpp, role)
+
+    
         
     
 
