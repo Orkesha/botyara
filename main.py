@@ -138,7 +138,7 @@ async def checkid(ctx):
 @client.command(brief='Гейская радуга для Всех!')
 async def радуга(ctx, roleid, *, slp):
  global kdstatus
- def start(gid, rolid, slpp, role):
+ def start(ctx, gid, rolid, slpp, role):
       ctx.reply('Харашо мой повелитель!')
       time.sleep(0.3)
       mess = ctx.send('Гейская радуга включена для роли '+roleid+', Кулдаун: '+str(kdstatus[gid])+'/1000')
@@ -163,14 +163,14 @@ async def радуга(ctx, roleid, *, slp):
  except:
    kdstatus[gid] = 0
  if kdstatus[gid] != 1000 or kdstatus[gid] == None:
-    start(gid, rolid, slpp, role)
+    start(ctx, gid, rolid, slpp, role)
  else:
     if int(time.time()) <= kdtime[gid]:
         await ctx.send("Использованы все попытки. Ждите, "+str(datetime.timedelta(seconds=dbtime)))
     if int(time.time()) >= kdtime[gid]:
         del kdtime[gid]
         del kdstatus[gid]
-        start(gid, rolid, slpp, role)
+        start(ctx, gid, rolid, slpp, role)
 
     
         
