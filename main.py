@@ -1,6 +1,6 @@
 import os
 import datetime
-import re
+import re, time
 import asyncio
 import random
 import discord
@@ -11,6 +11,8 @@ from googleapiclient.discovery import build
 import urllib.parse, urllib.request
 import googletrans 
 from googletrans import Translator
+kdstatus = {}
+kdtime = {}
 
 client = commands.Bot(command_prefix="")
 api_key = "AIzaSyDL5egasSh1KSwzKdt1Uua2dmSBCNvtZao"
@@ -135,85 +137,40 @@ async def checkid(ctx):
     
 @client.command(brief='Гейская радуга для Всех!')
 async def радуга(ctx, roleid, *, slp):
- gid = ctx.message.guild.id
- open(str(gid)+'time.txt', 'a')
- open(str(gid)+'.txt', 'a')
- sfile = open(str(gid)+'.txt', 'r')
- if "" == str(sfile.read()):
-    sfile = open(str(gid)+'.txt', 'w')
-    sfile.write("1")
-    sfile.close()
- stfile = open(str(gid)+'time.txt', 'r')
- if "" == str(stfile.read()):
-    sfile = open(str(gid)+'time.txt', 'w')
-    sfile.write("0")
-    sfile.close()
- sfile = open(str(gid)+'.txt', 'r')
- if 900 <= int(sfile.read()):
-   dbztime = open(str(gid)+'time.txt', 'r')
-   dbtime = 86400 - int(dbztime.read())
-   await ctx.send("Использованы все попытки. Ждите, "+str(datetime.timedelta(seconds=dbtime)))
-   dbztime.close()
- else:
-   my_file = open("allowedid.txt", "r")
-   if str(ctx.author.id) in str(my_file.read()):
-    sfile = open(str(gid)+'.txt', 'r')
-    my_file.close()
-    await ctx.reply('Харашо мой повелитель!')
-    await asyncio.sleep(1)
-    mess = await ctx.send('Гейская радуга включена для роли '+roleid+', Кулдаун: '+sfile.read()+'/1000')
-    rolid = int(re.search(r'\d+', roleid).group(0))
-    slpp = int(re.search(r'\d+', slp).group(0))
-    sfile = open(str(gid)+'.txt', 'r')
-    counta = int(sfile.read())
-    member = ctx.author
-    role = discord.utils.get(member.guild.roles, id=rolid)
-    while True:
-        sfile = open(str(gid)+'.txt', 'r')
-        counta = int(sfile.read()) + int(1)
-        if counta >= 900:
-          break
-        sfile.close()
-        sfile = open(str(gid)+'.txt', 'w')
-        sfile.write(str(counta))
-        sfile.close()
-        sfile = open(str(gid)+'.txt', 'r')
-        await mess.edit(content='Гейская радуга включена для роли '+roleid+', Кулдаун: '+sfile.read()+'/1000')
-        sfile.close()
-        if counta >= 900:
-          break
+ global kdstatus
+ def start(gid, rolid, slpp, role):
+      await ctx.reply('Харашо мой повелитель!')
+      await asyncio.sleep(1)
+      mess = await ctx.send('Гейская радуга включена для роли '+roleid+', Кулдаун: '+str(kdstatus[gid])+'/1000')
+      while True:
+        if kdstatus[gid] == 1000:
+          kdtime[gid] = int(time.time()) + 86400
+          np.save('kdstatus.npy', kdstatus)
+          np.save('kdtime.npy', kdtime)
+          await ctx.send('Действие радуги закончилась у роли '+roleid+'!')
+          break 
+        kdstatus[gid] += 1
+        await mess.edit(content='Гейская радуга включена для роли '+roleid+', Кулдаун: '+str(kdstatus[gid])+'/1000')
         await role.edit(colour=RandomColor())
         await asyncio.sleep(slpp)
-    await ctx.send('Действие радуги закончилась у роли '+roleid+'!')
-    await asyncio.sleep(2)
-    stfile = open(str(gid)+'time.txt', 'r')
-    a = 0
-    if int(stfile.read()) > 0:
-      print(f's')
-      stfile.close()
-    else:
-      stfile.close()
-      while True:
-       a = a + 1
-       stfile = open(str(gid)+'time.txt', 'w+')
-       stfile.write(str(a))
-       stfile.close()
-       await asyncio.sleep(1)
-       if a == 86400:
-        break
-      zer = 0
-      one = 1
-      sfile = open(str(gid)+'.txt', 'w+')
-      sfile.write(str(one))
-      sfile.close()
-      strfile = open(str(gid)+'time.txt', 'w+')
-      strfile.wtite(str(zer))
-      strfile.close()
-      await ctx.reply("Радуга вновь доступна!")
-   else:
-    await ctx.reply("Далбаебам куни не делаю")
-    my_file.close()
+ gid = ctx.message.guild.id
+ rolid = int(re.search(r'\d+', roleid).group(0))
+ slpp = int(re.search(r'\d+', slp).group(0))
+ member = ctx.author
+ role = discord.utils.get(member.guild.roles, id=rolid)
+ if kdstatus[gid] != 1000 or kdstatus[gid] == None:
+    start(gid, rolid, slpp, role)
+ else:
+    if int(time.time()) <= kdtime[gid]:
+        await ctx.send("Использованы все попытки. Ждите, "+str(datetime.timedelta(seconds=dbtime)))
+    if int(time.time()) >= kdtime[gid]:
+        del kdtime[gid]
+        del kdstatus[gid]
+        start(gid, rolid, slpp, role)
+        
+    
 
+    
 @client.event
 async def on_ready():
   print(f"Бот запущен")
