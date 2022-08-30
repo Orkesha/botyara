@@ -168,7 +168,7 @@ async def радуга(ctx, roleid, *, slp):
     if int(time.time()) >= kdtime[gid]:
         del kdtime[gid]
         del kdstatus[gid]
-        return радуга(ctx, roleid, *, slp)
+        await ctx.send("Введи команду ещё раз")
 
     
         
