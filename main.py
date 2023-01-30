@@ -15,7 +15,7 @@ kdstatus = {}
 kdtime = {}
 
 client = commands.Bot(command_prefix="")
-api_key = "AIzaSyDL5egasSh1KSwzKdt1Uua2dmSBCNvtZao"
+api_key = "apikey"
 def RandomColor(): 
     randcolor = discord.Color(random.randint(0x000000, 0xFFFFFF))
     return randcolor
@@ -186,4 +186,4 @@ async def on_ready():
      await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Activity(type=discord.ActivityType.listening, name="♂Gachi♂ remix"))
      await asyncio.sleep(3)
 
-client.run('ODU3NTYxODk4MTgxNzIyMTIy.YNRYwQ.Odc54SADOSA4zPn9ecXa8B3PT1w')
+client.run('you token')
